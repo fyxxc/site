@@ -125,21 +125,28 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(255, 255, 255, 0.8); /* Helles Weiß mit Transparenz */
-            opacity: 0;
-            pointer-events: none; /* Damit es keine Interaktion blockiert */
+            pointer-events: none; /* Verhindert Interaktionen */
             z-index: 3;
-            transition: opacity 0.2s ease;
+            overflow: hidden; /* Verhindert Scrollen innerhalb des Flashs */
         }
 
-        .flash.active {
-            opacity: 1;
-            animation: flash-animation 0.2s linear;
+        .flash .bolt {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 4;
+            transition: opacity 0.1s;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        @keyframes flash-animation {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
+        @keyframes bolt {
+            0% { opacity: 0; transform: scale(1) rotate(0); }
+            50% { opacity: 1; transform: scale(1.5) rotate(45deg); }
+            100% { opacity: 0; transform: scale(1) rotate(90deg); }
         }
     </style>
 </head>
@@ -178,10 +185,24 @@
         function showFlash(event, url) {
             event.preventDefault(); // Verhindert das sofortige Laden der Seite
             const flash = document.getElementById('flash');
-            flash.classList.add('active');
+            flash.innerHTML = ''; // Vorherige Blitze entfernen
+
+            // Erzeugt mehrere Blitz-Effekte
+            for (let i = 0; i < 10; i++) {
+                const bolt = document.createElement('div');
+                bolt.className = 'bolt';
+                bolt.style.top = `${Math.random() * 100}vh`;
+                bolt.style.left = `${Math.random() * 100}vw`;
+                bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.3}s linear`;
+                flash.appendChild(bolt);
+            }
+
+            // Blitz-Effekt anzeigen
+            flash.style.opacity = '1';
             setTimeout(() => {
-                window.location.href = url; // Wechselt zur Zielseite nach der Animation
-            }, 200); // Wartezeit für die Blitz-Animation
+                flash.style.opacity = '0'; // Blitz-Effekt wieder ausblenden
+                setTimeout(() => window.location.href = url, 300); // Wechselt zur Zielseite nach der Animation
+            }, 300);
         }
     </script>
 </body>
