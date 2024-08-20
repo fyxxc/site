@@ -157,14 +157,15 @@
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
+            background-color: black;
         }
 
         .marquee-text {
             display: inline-block;
-            padding-left: 100%;
             font-size: 2rem;
             color: white;
-            animation: marquee 20s linear infinite; /* Langsamere Animation für besseren Effekt */
+            padding-left: 100%;
+            animation: marquee 20s linear infinite; /* Langsame Animation für besseren Effekt */
         }
 
         @keyframes marquee {
@@ -197,7 +198,13 @@
 
     <!-- Endlos bewegender Text -->
     <div class="marquee-container">
-        <div class="marquee-text">Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;</div>
+        <div class="marquee-text">
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+        </div>
     </div>
 
     <script>
@@ -211,11 +218,11 @@
 
         // Funktion, um den Blitz-Effekt anzuzeigen
         function showFlash(event, url) {
-            event.preventDefault(); // Verhindert das sofortige Laden der Seite
-            const flash = document.getElementById('flash');
-            flash.innerHTML = ''; // Vorherige Blitze entfernen
+            event.preventDefault(); // Verhindert das sofortige Navigieren
 
-            // Erzeugt mehrere Blitz-Effekte
+            const flash = document.getElementById('flash');
+            flash.innerHTML = ''; // Löscht alte Blitz-Effekte
+
             for (let i = 0; i < 10; i++) {
                 const bolt = document.createElement('div');
                 bolt.className = 'bolt';
