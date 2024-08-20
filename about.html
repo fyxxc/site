@@ -33,12 +33,13 @@
             color: #fff;
             padding: 20px;
             width: 250px;
-            height: 150px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            /* Höhe an den Inhalt anpassen */
+            min-height: 100px; /* Mindesthöhe, wenn der Inhalt kleiner ist */
+            box-sizing: border-box; /* Beinhaltet Padding und Border in der Höhe/Breite */
         }
         .kachel h2 {
             font-size: 1.5rem;
@@ -63,11 +64,10 @@
             <p>Ich wohne in Laupen BE.</p>
         </div>
         <div class="kachel">
-            <h2>Beruf/h2>
-            <p>Ich mache eine Ausbildung als ICt-Fachmann EFZ bei der BLS AG.</p>
+            <h2>Beruf</h2>
+            <p>Ich mache eine Ausbildung als ICT-Fachmann EFZ bei der BLS AG.</p>
         </div>
         <!-- Weitere Kacheln können hier hinzugefügt werden -->
     </div>
 </body>
 </html>
-
