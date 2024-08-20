@@ -8,6 +8,7 @@
         body {
             background-color: black; /* Hintergrund schwarz */
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -17,11 +18,63 @@
         }
 
         h1 {
-            font-size: 5rem; /* Sehr große Schrift */
+            font-size: 10rem; /* Noch größere Schrift */
+            margin: 0;
+        }
+
+        /* Dropdown-Menü-Stil */
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black; /* Dropdown-Hintergrund komplett schwarz */
+            color: white; /* Dropdown-Schriftfarbe weiß */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2); /* Weißer Schatten */
+            z-index: 1;
+            text-align: center;
+        }
+
+        .dropdown-content a {
+            color: white; /* Linkfarbe weiß */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px; /* Größere Schrift */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #333; /* Hintergrund beim Hover leicht heller */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropbtn {
+            background-color: black;
+            color: white;
+            padding: 16px;
+            font-size: 18px; /* Größere Schrift für den Button */
+            border: 1px solid white; /* Weißer Rand um den Button */
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div class="dropdown">
+        <button class="dropbtn">Menü</button>
+        <div class="dropdown-content">
+            <a href="#">Über Fynn</a>
+            <a href="#">Infos</a>
+            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a> <!-- LinkedIn-Link -->
+        </div>
+    </div>
     <h1>Fynn Hofmann</h1>
 </body>
 </html>
