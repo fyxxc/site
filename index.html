@@ -164,7 +164,7 @@
             padding-left: 100%;
             font-size: 2rem;
             color: white;
-            animation: marquee 10s linear infinite;
+            animation: marquee 20s linear infinite; /* Langsamere Animation für besseren Effekt */
         }
 
         @keyframes marquee {
@@ -197,7 +197,7 @@
 
     <!-- Endlos bewegender Text -->
     <div class="marquee-container">
-        <div class="marquee-text">Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;</div>
+        <div class="marquee-text">Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;</div>
     </div>
 
     <script>
@@ -221,12 +221,10 @@
                 bolt.className = 'bolt';
                 bolt.style.top = `${Math.random() * 100}vh`;
                 bolt.style.left = `${Math.random() * 100}vw`;
-                bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.3}s linear`;
+                bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.5}s linear`;
                 flash.appendChild(bolt);
             }
 
-            // Blitz-Effekt anzeigen
-            flash.style.opacity = '1';
             setTimeout(() => {
                 flash.style.opacity = '0'; // Blitz-Effekt wieder ausblenden
                 setTimeout(() => window.location.href = url, 300); // Wechselt zur Zielseite nach der Animation
