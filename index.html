@@ -15,6 +15,7 @@
             margin: 0;
             color: white; /* Schriftfarbe weiß */
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Verhindert Scrollen während der Animation */
         }
 
         h1 {
@@ -116,6 +117,30 @@
         .close-btn:hover {
             background-color: #005bb5; /* Dunkleres Blau beim Hover */
         }
+
+        /* Blitz-Animation */
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8); /* Helles Weiß mit Transparenz */
+            opacity: 0;
+            pointer-events: none; /* Damit es keine Interaktion blockiert */
+            z-index: 3;
+            transition: opacity 0.2s ease;
+        }
+
+        .flash.active {
+            opacity: 1;
+            animation: flash-animation 0.2s linear;
+        }
+
+        @keyframes flash-animation {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -127,11 +152,14 @@
         </div>
     </div>
 
+    <!-- Flash-Effekt -->
+    <div id="flash" class="flash"></div>
+
     <div class="dropdown">
         <button class="dropbtn">Menü</button>
         <div class="dropdown-content">
-            <a href="about.html">Über Fynn</a> <!-- Link zu "about.html" -->
-            <a href="info.html">Infos</a> <!-- Link zu "info.html" -->
+            <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a> <!-- Link zu "about.html" -->
+            <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a> <!-- Link zu "info.html" -->
             <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a> <!-- LinkedIn-Link -->
         </div>
     </div>
@@ -144,6 +172,16 @@
             modal.style.transform = 'translateY(-50px)';
             modal.style.opacity = '0';
             setTimeout(() => modal.style.display = 'none', 300); // Verzögerung für die Animation
+        }
+
+        // Funktion, um den Blitz-Effekt anzuzeigen
+        function showFlash(event, url) {
+            event.preventDefault(); // Verhindert das sofortige Laden der Seite
+            const flash = document.getElementById('flash');
+            flash.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url; // Wechselt zur Zielseite nach der Animation
+            }, 200); // Wartezeit für die Blitz-Animation
         }
     </script>
 </body>
