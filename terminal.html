@@ -4,16 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weiterleitung</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            color: white;
+            font-size: 48px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
     <script>
-        function redirectToGitHub() {
+        function redirect() {
             setTimeout(function() {
                 window.location.href = "https://github.com";
-            }, 5000); // 5000 Millisekunden = 5 Sekunden
+            }, 5000);
         }
     </script>
 </head>
-<body onload="redirectToGitHub()">
+<body onload="redirect()">
     <h1>Hallo Fynn</h1>
 </body>
 </html>
-
