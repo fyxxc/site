@@ -3,259 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fynn Hofmann</title>
+    <title>Über Fynn</title>
     <style>
         body {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Kleineren violetten Schimmer in der Mitte */
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
-            color: white; /* Schriftfarbe weiß */
+            color: white;
             font-family: Arial, sans-serif;
-            overflow: hidden; /* Verhindert Scrollen während der Animation */
         }
-
         h1 {
-            font-size: 10rem; /* Große Schrift */
-            margin: 0;
-            cursor: pointer; /* Zeigt, dass der Text klickbar ist */
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
-        }
-
-        /* Dropdown-Menü-Stil */
-        .dropdown {
-            position: absolute;
-            top: 20px;
-            text-align: center;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: transparent; /* Hintergrund transparent */
-            color: white; /* Textfarbe weiß */
-            min-width: 200px; /* Breitere Breite für bessere Lesbarkeit */
-            border-radius: 12px; /* Abgerundete Ecken */
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Dezenter Schatten */
-            z-index: 1;
-            text-align: left; /* Linke Ausrichtung */
-            padding: 10px 0; /* Vertikale Polsterung */
-        }
-
-        .dropdown-content a {
-            color: white; /* Linkfarbe weiß */
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 16px; /* Kleinere Schriftgröße für das Dropdown-Menü */
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
-            transition: background-color 0.2s, color 0.2s; /* Sanfte Übergänge */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #007aff; /* Hellerer Hintergrund beim Hover */
-            color: #f0f0f5; /* Textfarbe beim Hover */
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropbtn {
-            background-color: transparent; /* Hintergrund transparent */
-            color: white; /* Weiße Schriftfarbe */
-            padding: 16px;
-            font-size: 18px; /* Größere Schrift für den Button */
-            border: none; /* Kein Rand */
-            cursor: pointer;
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
-            transition: background-color 0.2s, color 0.2s; /* Sanfte Übergänge */
-        }
-
-        .dropbtn:hover {
-            background-color: #007aff; /* Hellerer Hintergrund beim Hover */
-            color: #f0f0f5; /* Textfarbe beim Hover */
-        }
-
-        /* Modal-Box-Stil */
-        .modal {
-            display: block; /* Modal wird standardmäßig angezeigt */
-            position: fixed;
-            z-index: 2;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* Schwarzer Hintergrund mit Transparenz */
-            backdrop-filter: blur(10px); /* Weicher Blur-Effekt für den Hintergrund */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #2c2c2e; /* Dunkelgrauer Hintergrund */
-            border-radius: 20px; /* Abgerundete Ecken */
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Weicher 3D-Schatten */
-            width: 80%;
-            max-width: 400px;
+            font-size: 4rem;
+            margin-top: 50px;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            color: #eaeaea; /* Helle Schriftfarbe */
-            transform: translateY(-10px);
-            transition: transform 0.3s ease-out; /* Weiche Animation beim Einblenden */
-        }
-
-        .modal-content p {
-            margin-bottom: 20px;
-            font-size: 1.2rem; /* Größere Schrift für den Text */
-        }
-
-        .close-btn {
-            background-color: #007aff; /* Typisches Apple-Blau */
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
             cursor: pointer;
-            font-size: 18px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Leichter 3D-Schatten */
-            transition: background-color 0.2s ease;
         }
-
-        .close-btn:hover {
-            background-color: #005bb5; /* Dunkleres Blau beim Hover */
+        .kachel-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
         }
-
-        /* Blitz-Animation */
-        .flash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none; /* Verhindert Interaktionen */
-            z-index: 3;
-            overflow: hidden; /* Verhindert Scrollen innerhalb des Flashs */
+        .kachel {
+            background-color: #2c2c2e; /* Dunkelgraue Kacheln */
+            color: #eaeaea;
+            padding: 20px;
+            width: 250px;
+            border-radius: 20px; /* Abgerundete Ecken */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            min-height: 100px;
+            box-sizing: border-box;
+            text-align: center; /* Zentrierter Text */
         }
-
-        .flash .bolt {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.8);
-            width: 100px;
-            height: 100px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 4;
-            transition: opacity 0.1s;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        .kachel h2 {
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
         }
-
-        @keyframes bolt {
-            0% { opacity: 0; transform: scale(1) rotate(0); }
-            50% { opacity: 1; transform: scale(1.5) rotate(45deg); }
-            100% { opacity: 0; transform: scale(1) rotate(90deg); }
-        }
-
-        /* Endlos bewegender Text am unteren Rand */
-        .marquee-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            background-color: black;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            font-size: 2rem;
-            color: white;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite; /* Langsame Animation für besseren Effekt */
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        .kachel p {
+            font-size: 1rem;
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Modal-Box -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <p>Diese Webseite ist noch in Bearbeitung.</p>
-            <button class="close-btn" onclick="closeModal()">OK</button>
+    <h1>Über Fynn</h1>
+
+    <div class="kachel-container">
+        <div class="kachel">
+            <h2>Alter</h2>
+            <p>Ich bin 17 Jahre alt.</p>
         </div>
-    </div>
-
-    <!-- Flash-Effekt -->
-    <div id="flash" class="flash"></div>
-
-    <div class="dropdown">
-        <button class="dropbtn">Menü</button>
-        <div class="dropdown-content">
-            <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a> <!-- Link zu "about.html" -->
-            <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a> <!-- Link zu "info.html" -->
-            <a href="mailto:site@fynn-hofmann.com">Mail</a> <!-- Link für E-Mail -->
-            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a> <!-- LinkedIn-Link -->
+        <div class="kachel">
+            <h2>Wohnort</h2>
+            <p>Ich wohne in Laupen BE.</p>
         </div>
-    </div>
-    <h1 onclick="easterEgg()">Fynn Hofmann</h1>
-
-    <!-- Endlos bewegender Text -->
-    <div class="marquee-container">
-        <div class="marquee-text">
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+        <div class="kachel">
+            <h2>Beruf</h2>
+            <p>Ich mache eine Ausbildung als ICT-Fachmann EFZ bei der BLS AG.</p>
         </div>
+        <!-- Weitere Kacheln können hier hinzugefügt werden -->
     </div>
-
-    <script>
-        // Funktion zum Schließen des Modal-Fensters
-        function closeModal() {
-            const modal = document.getElementById('myModal');
-            modal.style.transform = 'translateY(-50px)';
-            modal.style.opacity = '0';
-            setTimeout(() => modal.style.display = 'none', 300); // Verzögerung für die Animation
-        }
-
-        // Funktion, um den Blitz-Effekt anzuzeigen
-        function showFlash(event, url) {
-            event.preventDefault(); // Verhindert das sofortige Navigieren
-
-            const flash = document.getElementById('flash');
-            flash.innerHTML = ''; // Löscht alte Blitz-Effekte
-
-            for (let i = 0; i < 10; i++) {
-                const bolt = document.createElement('div');
-                bolt.className = 'bolt';
-                bolt.style.top = `${Math.random() * 100}vh`;
-                bolt.style.left = `${Math.random() * 100}vw`;
-                bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.5}s linear`;
-                flash.appendChild(bolt);
-            }
-
-            flash.style.opacity = '1'; // Blitz-Effekt einblenden
-
-            setTimeout(() => {
-                flash.style.opacity = '0'; // Blitz-Effekt wieder ausblenden
-                setTimeout(() => window.location.href = url, 300); // Wechselt zur Zielseite nach der Animation
-            }, 300);
-        }
-
-        // Funktion für das Easter Egg
-        function easterEgg() {
-            window.location.href = 'Y.html'; // Wechselt zur Y.html Seite
-        }
-    </script>
 </body>
 </html>
