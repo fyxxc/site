@@ -6,7 +6,7 @@
     <title>Fynn Hofmann</title>
     <style>
         body {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Violetter Schimmer */
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Kleineren violetten Schimmer in der Mitte */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -16,11 +16,6 @@
             color: white; /* Schriftfarbe weiß */
             font-family: Arial, sans-serif;
             overflow: hidden; /* Verhindert Scrollen während der Animation */
-            transition: background 0.5s ease; /* Sanfter Übergang der Hintergrundfarbe */
-        }
-
-        body:hover {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.5) 0%, black 40%); /* Intensivere Farbe beim Hover */
         }
 
         h1 {
@@ -196,6 +191,7 @@
         <div class="dropdown-content">
             <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a> <!-- Link zu "about.html" -->
             <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a> <!-- Link zu "info.html" -->
+            <a href="mailto:site@fynn-hoffmann.com">Mail</a> <!-- Link für E-Mail -->
             <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a> <!-- LinkedIn-Link -->
         </div>
     </div>
@@ -213,16 +209,20 @@
     </div>
 
     <script>
-        // Funktion zum Schließen des Modals
+        // Funktion zum Schließen des Modal-Fensters
         function closeModal() {
-            document.getElementById('myModal').style.display = 'none';
+            const modal = document.getElementById('myModal');
+            modal.style.transform = 'translateY(-50px)';
+            modal.style.opacity = '0';
+            setTimeout(() => modal.style.display = 'none', 300); // Verzögerung für die Animation
         }
 
-        // Funktion für das Einblenden des Blitz-Effekts und den Seitenwechsel
+        // Funktion, um den Blitz-Effekt anzuzeigen
         function showFlash(event, url) {
-            event.preventDefault(); // Verhindert den direkten Link-Klick
+            event.preventDefault(); // Verhindert das sofortige Navigieren
+
             const flash = document.getElementById('flash');
-            flash.innerHTML = ''; // Blitz-Effekte zurücksetzen
+            flash.innerHTML = ''; // Löscht alte Blitz-Effekte
 
             for (let i = 0; i < 10; i++) {
                 const bolt = document.createElement('div');
