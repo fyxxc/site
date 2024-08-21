@@ -9,13 +9,21 @@
             background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 200vh; /* Erhöht die Höhe, um Scrollen zu ermöglichen */
             margin: 0;
             color: white;
             font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            overflow-x: hidden;
+        }
+
+        /* Hauptbereich */
+        .main-content {
+            height: 100vh; /* Initialhöhe, um den Titel sichtbar zu machen */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         h1 {
@@ -147,40 +155,19 @@
             100% { opacity: 0; transform: scale(1) rotate(90deg); }
         }
 
-        .marquee-container {
-            position: absolute;
-            bottom: 130px; /* Platz für den Footer schaffen */
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            background-color: black;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            font-size: 2rem;
-            color: white;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
+        /* Violetter Textbereich */
         .footer-container {
-            position: relative;
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            background-color: black;
+            background-color: rgba(138, 43, 226, 0.3); /* Gleiche Farbe wie der violette Farbkreis */
             color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            padding: 20px 0;
             text-align: center;
-        }
-
-        .footer-text {
+            padding: 20px 0;
             font-size: 1.2rem;
+            white-space: nowrap; /* Verhindert Zeilenumbrüche */
+            overflow: hidden; /* Verhindert Scrollen innerhalb des Fußbereichs */
         }
     </style>
 </head>
@@ -194,33 +181,23 @@
 
     <div id="flash" class="flash"></div>
 
-    <div class="dropdown">
-        <button class="dropbtn">Menü</button>
-        <div class="dropdown-content">
-            <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a>
-            <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a>
-            <a href="mailto:site@fynn-hofmann.com">Mail</a>
-            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
+    <div class="main-content">
+        <div class="dropdown">
+            <button class="dropbtn">Menü</button>
+            <div class="dropdown-content">
+                <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a>
+                <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a>
+                <a href="mailto:site@fynn-hofmann.com">Mail</a>
+                <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
+            </div>
         </div>
-    </div>
-    <h1 onclick="handleClick('y')">Fynn Hofmann</h1>
-
-    <div class="marquee-container">
-        <div class="marquee-text">
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-        </div>
+        <h1 onclick="handleClick('y')">Fynn Hofmann</h1>
     </div>
 
-    <!-- Neuer Textbereich am unteren Rand -->
+    <!-- Violetter Textbereich am unteren Rand der Seite -->
     <div class="footer-container">
-        <div class="footer-text">
-            <!-- Hier kannst du deinen Text einfügen -->
-            Hier kannst du deinen Text einfügen
-        </div>
+        <!-- Hier kannst du deinen Text einfügen -->
+        Hier kannst du deinen Text einfügen
     </div>
 
     <script>
