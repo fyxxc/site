@@ -15,7 +15,7 @@
             margin: 0;
             color: white;
             font-family: Arial, sans-serif;
-            overflow: hidden;
+            overflow-x: hidden; /* Verhindert horizontales Scrollen */
         }
 
         h1 {
@@ -170,13 +170,20 @@
         }
 
         /* Neuer Textbereich am unteren Rand */
-        .footer-text {
-            position: absolute;
-            bottom: 10px;
+        .footer-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto; /* Ermöglicht horizontales Scrollen */
+            white-space: nowrap; /* Verhindert Zeilenumbruch */
+            background-color: black;
             color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
-            font-size: 1.2rem;
-            text-align: center;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+            padding: 10px 0;
+        }
+
+        .footer-text {
+            display: inline-block;
+            font-size: 1.2rem;
             padding: 0 20px;
         }
     </style>
@@ -213,9 +220,11 @@
     </div>
 
     <!-- Neuer Textbereich am unteren Rand -->
-    <div class="footer-text">
-        <!-- Hier kannst du deinen Text einfügen -->
-        Hier kannst du deinen Text einfügen
+    <div class="footer-container">
+        <div class="footer-text">
+            <!-- Hier kannst du deinen Text einfügen -->
+            Hier kannst du deinen Text einfügen
+        </div>
     </div>
 
     <script>
