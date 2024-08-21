@@ -3,67 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osterei</title>
+    <title>Osterlandschaft</title>
     <style>
         body {
-            background-color: white;
+            background-color: #87CEEB; /* Heller Himmel */
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            font-family: 'Arial', sans-serif;
         }
-        .osterei {
-            width: 250px;
-            height: 330px;
-            background: linear-gradient(135deg, #ffcc99, #ff9966, #ff6699);
-            border-radius: 50% 50% 45% 45%;
+        .scene {
             position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background-color: #32CD32; /* Grasgrün */
+        }
+        .egg {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 200px;
+            background: radial-gradient(circle at 50% 50%, #ffcc99, #ff9966, #ff6699);
+            border-radius: 50% 50% 45% 45%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            text-align: center;
-            padding: 15px;
-            box-sizing: border-box;
+            z-index: 3;
+            border: 5px solid white;
         }
-        .osterei::before {
+        .egg::before, .egg::after {
             content: '';
             position: absolute;
-            top: 30%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .egg::before {
+            top: 40px;
+            left: 30px;
+        }
+        .egg::after {
+            bottom: 40px;
+            right: 30px;
+        }
+        .tree {
+            position: absolute;
+            bottom: 150px;
+            background-color: #8B4513; /* Baumstamm */
+            width: 40px;
+            height: 100px;
+            z-index: 1;
+        }
+        .tree .leaves {
+            position: absolute;
+            top: -70px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background-color: #228B22; /* Blattgrün */
+            border-radius: 50%;
+        }
+        .house {
+            position: absolute;
+            bottom: 50px;
             left: 15%;
+            width: 180px;
+            height: 150px;
+            background-color: #FFD700; /* Hausfarbe */
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .house .roof {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 60px solid #8B0000; /* Dachfarbe */
+            position: absolute;
+            top: -60px;
+        }
+        .house .door {
             width: 50px;
             height: 70px;
-            background: #fff;
-            border-radius: 50%;
-            transform: rotate(-20deg);
-        }
-        .osterei::after {
-            content: '';
+            background-color: #8B4513;
             position: absolute;
-            top: 50%;
-            left: 60%;
-            width: 50px;
-            height: 70px;
-            background: #fff;
-            border-radius: 50%;
-            transform: rotate(20deg);
+            bottom: 0;
         }
-        .name {
+        .fence {
             position: absolute;
-            bottom: 10%;
-            width: 100%;
-            font-size: 22px;
-            font-weight: bold;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 50px;
+            background: repeating-linear-gradient(
+                90deg,
+                white 0,
+                white 10px,
+                black 10px,
+                black 15px
+            );
+            z-index: 2;
         }
     </style>
 </head>
 <body>
-    <div class="osterei">
-        <div class="name">Fynn Hofmann</div>
+    <div class="scene">
+        <div class="grass"></div>
+        <div class="fence"></div>
+        <div class="house">
+            <div class="roof"></div>
+            <div class="door"></div>
+        </div>
+        <div class="tree" style="left: 75%;">
+            <div class="leaves"></div>
+        </div>
+        <div class="tree" style="left: 20%;">
+            <div class="leaves"></div>
+        </div>
+        <div class="egg"></div>
     </div>
 </body>
 </html>
