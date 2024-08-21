@@ -6,8 +6,9 @@
     <title>Osterlandschaft</title>
     <style>
         body {
-            background-color: #87CEEB; /* Himmel */
             margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to top, #87CEEB, #ffffff); /* Himmel mit sanftem Verlauf */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,88 +25,74 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 300px;
-            background: linear-gradient(#32CD32, #228B22); /* Mehrdimensionales Gras */
+            height: 350px;
+            background: linear-gradient(to top, #32CD32, #7CFC00); /* Realistischerer Grasverlauf */
+            border-radius: 0 0 50% 50%;
         }
         .egg {
             position: absolute;
             bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 270px;
-            background: linear-gradient(135deg, #ffcc99, #ff9966, #ff6699);
-            border-radius: 50% 50% 45% 45%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 3;
-            border: 8px solid white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .egg::before, .egg::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background: white;
+            width: 180px;
+            height: 240px;
+            background: radial-gradient(circle at 50% 50%, #ffcc99, #ff9966, #ff6699);
             border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            border: 8px solid white;
+            transition: transform 0.3s ease;
         }
-        .egg::before {
-            top: 50px;
-            left: 40px;
-        }
-        .egg::after {
-            bottom: 50px;
-            right: 40px;
+        .egg:hover {
+            transform: translateX(-50%) translateY(-20px); /* Bewegung nach oben bei Hover */
         }
         .tree {
             position: absolute;
-            bottom: 100px;
+            bottom: 120px;
             background-color: #8B4513; /* Baumstamm */
             width: 60px;
-            height: 180px;
-            z-index: 1;
+            height: 200px;
+            border-radius: 20px;
         }
         .tree .leaves {
             position: absolute;
-            top: -120px;
-            left: -60px;
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, #228B22, #006400); /* Schattenhafte Blätter */
+            top: -140px;
+            left: -70px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #006400, #228B22); /* Blätter mit weicherem Schatten */
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
         .house {
             position: absolute;
-            bottom: 50px;
+            bottom: 70px;
             left: 10%;
-            width: 250px;
-            height: 200px;
-            background-color: #FFD700; /* Hausfarbe */
+            width: 220px;
+            height: 160px;
+            background-color: #FFD700; /* Weichere Hausfarbe */
             z-index: 2;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
         .house .roof {
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 100px solid #8B0000; /* Dachfarbe */
             position: absolute;
-            top: -100px;
-            left: -50px;
+            top: -90px;
+            left: -20px;
+            width: 260px;
+            height: 150px;
+            background: #8B0000;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
         .house .door {
             width: 60px;
-            height: 100px;
+            height: 90px;
             background-color: #8B4513;
             position: absolute;
-            bottom: 0;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 5px;
             box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
         }
         .house .window {
@@ -114,14 +101,15 @@
             height: 40px;
             background-color: #87CEFA;
             border: 4px solid white;
+            border-radius: 5px;
             box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         .house .window.left {
-            top: 30px;
+            top: 20px;
             left: 30px;
         }
         .house .window.right {
-            top: 30px;
+            top: 20px;
             right: 30px;
         }
         .fence {
@@ -137,14 +125,16 @@
                 black 15px,
                 black 20px
             );
+            border-radius: 5px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
         .sun {
             position: absolute;
             top: 50px;
             right: 50px;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: radial-gradient(circle, #FFD700, #FFA500);
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
