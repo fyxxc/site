@@ -16,6 +16,7 @@
             color: white;
             font-family: Arial, sans-serif;
             overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            overflow-y: auto;  /* Ermöglicht vertikales Scrollen */
         }
 
         h1 {
@@ -33,24 +34,24 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: black;
-            color: white;
+            background-color: transparent; /* Kein Hintergrund */
+            color: white; /* Schriftfarbe weiß */
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+            box-shadow: none; /* Kein Schatten */
             z-index: 1;
             text-align: center;
         }
 
         .dropdown-content a {
-            color: white;
+            color: white; /* Linkfarbe weiß */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 18px;
+            font-size: 18px; /* Größere Schrift */
         }
 
         .dropdown-content a:hover {
-            background-color: #333;
+            background-color: transparent; /* Kein Hintergrund beim Hover */
         }
 
         .dropdown:hover .dropdown-content {
@@ -58,7 +59,7 @@
         }
 
         .dropbtn {
-            background-color: black;
+            background-color: transparent; /* Kein Hintergrund */
             color: white;
             padding: 16px;
             font-size: 18px;
@@ -149,7 +150,7 @@
 
         .marquee-container {
             position: absolute;
-            bottom: 0;
+            bottom: 70px; /* Platz für den Footer schaffen */
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
@@ -169,7 +170,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Neuer Textbereich am unteren Rand */
         .footer-container {
             position: relative;
             width: 100%;
@@ -179,6 +179,7 @@
             color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
             font-family: 'Helvetica Neue', Arial, sans-serif;
             padding: 10px 0;
+            text-align: center; /* Zentriert den Text */
         }
 
         .footer-text {
