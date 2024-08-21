@@ -6,7 +6,7 @@
     <title>Fynn Hofmann</title>
     <style>
         body {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Kleineren violetten Schimmer in der Mitte */
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Violetter Schimmer */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -16,6 +16,11 @@
             color: white; /* Schriftfarbe weiß */
             font-family: Arial, sans-serif;
             overflow: hidden; /* Verhindert Scrollen während der Animation */
+            transition: background 0.5s ease; /* Sanfter Übergang der Hintergrundfarbe */
+        }
+
+        body:hover {
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.5) 0%, black 40%); /* Intensivere Farbe beim Hover */
         }
 
         h1 {
@@ -208,20 +213,16 @@
     </div>
 
     <script>
-        // Funktion zum Schließen des Modal-Fensters
+        // Funktion zum Schließen des Modals
         function closeModal() {
-            const modal = document.getElementById('myModal');
-            modal.style.transform = 'translateY(-50px)';
-            modal.style.opacity = '0';
-            setTimeout(() => modal.style.display = 'none', 300); // Verzögerung für die Animation
+            document.getElementById('myModal').style.display = 'none';
         }
 
-        // Funktion, um den Blitz-Effekt anzuzeigen
+        // Funktion für das Einblenden des Blitz-Effekts und den Seitenwechsel
         function showFlash(event, url) {
-            event.preventDefault(); // Verhindert das sofortige Navigieren
-
+            event.preventDefault(); // Verhindert den direkten Link-Klick
             const flash = document.getElementById('flash');
-            flash.innerHTML = ''; // Löscht alte Blitz-Effekte
+            flash.innerHTML = ''; // Blitz-Effekte zurücksetzen
 
             for (let i = 0; i < 10; i++) {
                 const bolt = document.createElement('div');
