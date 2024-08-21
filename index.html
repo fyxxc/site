@@ -9,21 +9,13 @@
             background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%);
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
             margin: 0;
             color: white;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Hauptbereich */
-        .main-content {
-            height: 100vh; /* Initialhöhe, um den Titel sichtbar zu machen */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            overflow: hidden;
         }
 
         h1 {
@@ -41,24 +33,24 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: transparent; /* Kein Hintergrund */
-            color: white; /* Schriftfarbe weiß */
+            background-color: black;
+            color: white;
             min-width: 160px;
-            box-shadow: none; /* Kein Schatten */
+            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
             z-index: 1;
             text-align: center;
         }
 
         .dropdown-content a {
-            color: white; /* Linkfarbe weiß */
+            color: white;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 18px; /* Größere Schrift */
+            font-size: 18px;
         }
 
         .dropdown-content a:hover {
-            background-color: transparent; /* Kein Hintergrund beim Hover */
+            background-color: #333;
         }
 
         .dropdown:hover .dropdown-content {
@@ -66,7 +58,7 @@
         }
 
         .dropbtn {
-            background-color: transparent; /* Kein Hintergrund */
+            background-color: black;
             color: white;
             padding: 16px;
             font-size: 18px;
@@ -155,19 +147,37 @@
             100% { opacity: 0; transform: scale(1) rotate(90deg); }
         }
 
-        /* Violetter Textbereich */
-        .footer-container {
+        .marquee-container {
             position: absolute;
             bottom: 0;
             width: 100%;
-            background-color: rgba(138, 43, 226, 0.3); /* Gleiche Farbe wie der violette Farbkreis */
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: black;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-size: 2rem;
+            color: white;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Neuer Textbereich am unteren Rand */
+        .footer-text {
+            position: absolute;
+            bottom: 10px;
             color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            text-align: center;
-            padding: 20px 0;
             font-size: 1.2rem;
-            white-space: nowrap; /* Verhindert Zeilenumbrüche */
-            overflow: hidden; /* Verhindert Scrollen innerhalb des Fußbereichs */
+            text-align: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            padding: 0 20px;
         }
     </style>
 </head>
@@ -181,21 +191,29 @@
 
     <div id="flash" class="flash"></div>
 
-    <div class="main-content">
-        <div class="dropdown">
-            <button class="dropbtn">Menü</button>
-            <div class="dropdown-content">
-                <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a>
-                <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a>
-                <a href="mailto:site@fynn-hofmann.com">Mail</a>
-                <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
-            </div>
+    <div class="dropdown">
+        <button class="dropbtn">Menü</button>
+        <div class="dropdown-content">
+            <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a>
+            <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a>
+            <a href="mailto:site@fynn-hofmann.com">Mail</a>
+            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
         </div>
-        <h1 onclick="handleClick('y')">Fynn Hofmann</h1>
+    </div>
+    <h1 onclick="easterEgg()">Fynn Hofmann</h1>
+
+    <div class="marquee-container">
+        <div class="marquee-text">
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+        </div>
     </div>
 
-    <!-- Violetter Textbereich am unteren Rand der Seite -->
-    <div class="footer-container">
+    <!-- Neuer Textbereich am unteren Rand -->
+    <div class="footer-text">
         <!-- Hier kannst du deinen Text einfügen -->
         Hier kannst du deinen Text einfügen
     </div>
@@ -231,10 +249,8 @@
             }, 300);
         }
 
-        function handleClick(char) {
-            if (char === 'y') {
-                window.location.href = 'Y.html';
-            }
+        function easterEgg() {
+            window.location.href = 'Y.html';
         }
     </script>
 </body>
