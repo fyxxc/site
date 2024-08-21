@@ -6,7 +6,7 @@
     <title>Fynn Hofmann</title>
     <style>
         body {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 70%); /* Sanfter violetter Schimmer in der Mitte */
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%); /* Kleineren violetten Schimmer in der Mitte */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -19,7 +19,7 @@
         }
 
         h1 {
-            font-size: 10rem; /* Noch größere Schrift */
+            font-size: 10rem; /* Große Schrift */
             margin: 0;
             cursor: pointer; /* Zeigt, dass der Text klickbar ist */
         }
@@ -231,6 +231,8 @@
                 bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.5}s linear`;
                 flash.appendChild(bolt);
             }
+
+            flash.style.opacity = '1'; // Blitz-Effekt einblenden
 
             setTimeout(() => {
                 flash.style.opacity = '0'; // Blitz-Effekt wieder ausblenden
