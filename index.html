@@ -35,7 +35,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: white; /* Weißer Hintergrund */
+            background-color: transparent; /* Hintergrund transparent */
             color: black; /* Textfarbe schwarz */
             min-width: 200px; /* Breitere Breite für bessere Lesbarkeit */
             border-radius: 12px; /* Abgerundete Ecken */
@@ -65,21 +65,19 @@
         }
 
         .dropbtn {
-            background-color: white; /* Weißer Hintergrund für den Button */
+            background-color: transparent; /* Hintergrund transparent */
             color: black; /* Schwarze Schriftfarbe */
             padding: 16px;
             font-size: 18px; /* Größere Schrift für den Button */
-            border: 1px solid #d0d0d5; /* Dünner grauer Rand */
-            border-radius: 12px; /* Abgerundete Ecken */
+            border: none; /* Kein Rand */
             cursor: pointer;
             font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Sanfte Übergänge */
+            transition: background-color 0.2s, color 0.2s; /* Sanfte Übergänge */
         }
 
         .dropbtn:hover {
             background-color: #f0f0f5; /* Hellerer Hintergrund beim Hover */
             color: #007aff; /* Textfarbe beim Hover */
-            border-color: #007aff; /* Randfarbe beim Hover */
         }
 
         /* Modal-Box-Stil */
