@@ -3,98 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fynn Hofmann</title>
+    <title>Osterlandschaft</title>
     <style>
         body {
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%);
             margin: 0;
-            color: white;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1 {
-            font-size: 10rem;
-            margin: 0;
-            text-align: center;
-            padding-top: 40vh;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        /* Menü-Sektions-Stil */
-        .menu-section {
+            overflow: hidden;
+            background: linear-gradient(to top, #87CEEB, #ffffff); /* Himmel mit sanftem Verlauf */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
-            padding: 50px 20px;
+            font-family: 'Arial', sans-serif;
         }
-
-        .menu-link {
-            color: white;
-            font-size: 4rem;
-            text-decoration: none;
-            margin: 0 40px;
-            transition: color 0.2s ease, transform 0.2s ease;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
-
-        .menu-link:hover {
-            color: #007aff;
-            transform: scale(1.1);
-        }
-
-        /* Endlos bewegender Text am unteren Rand */
-        .marquee-container {
+        .grass {
             position: absolute;
             bottom: 0;
             width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            background-color: black;
+            height: 350px;
+            background: linear-gradient(to top, #32CD32, #7CFC00); /* Realistischerer Grasverlauf */
+            border-radius: 0 0 50% 50%;
         }
-
-        .marquee-text {
-            display: inline-block;
-            font-size: 2rem;
-            color: white;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
+        .egg {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 240px;
+            background: radial-gradient(circle at 50% 50%, #ffcc99, #ff9966, #ff6699);
+            border-radius: 50%;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            border: 8px solid white;
+            transition: transform 0.3s ease;
         }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        .egg:hover {
+            transform: translateX(-50%) translateY(-20px); /* Bewegung nach oben bei Hover */
+        }
+        .tree {
+            position: absolute;
+            bottom: 120px;
+            background-color: #8B4513; /* Baumstamm */
+            width: 60px;
+            height: 200px;
+            border-radius: 20px;
+        }
+        .tree .leaves {
+            position: absolute;
+            top: -140px;
+            left: -70px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #006400, #228B22); /* Blätter mit weicherem Schatten */
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .house {
+            position: absolute;
+            bottom: 70px;
+            left: 10%;
+            width: 220px;
+            height: 160px;
+            background-color: #FFD700; /* Weichere Hausfarbe */
+            z-index: 2;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        .house .roof {
+            position: absolute;
+            top: -90px;
+            left: -20px;
+            width: 260px;
+            height: 150px;
+            background: #8B0000;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        .house .door {
+            width: 60px;
+            height: 90px;
+            background-color: #8B4513;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .house .window {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #87CEFA;
+            border: 4px solid white;
+            border-radius: 5px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .house .window.left {
+            top: 20px;
+            left: 30px;
+        }
+        .house .window.right {
+            top: 20px;
+            right: 30px;
+        }
+        .fence {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 60px;
+            background: repeating-linear-gradient(
+                90deg,
+                white 0,
+                white 15px,
+                black 15px,
+                black 20px
+            );
+            border-radius: 5px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        .sun {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+            z-index: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Überschrift -->
-    <h1>F<span class="highlight" onclick="goToY()">y</span>nn Hofmann</h1>
-
-    <!-- Menü-Sektion -->
-    <div class="menu-section">
-        <a href="about.html" class="menu-link">Über Fynn</a>
-        <a href="info.html" class="menu-link">Infos</a>
-        <a href="mailto:site@fynn-hofmann.com" class="menu-link">Mail</a>
-        <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" class="menu-link" target="_blank">LinkedIn</a>
-    </div>
-
-    <!-- Endlos bewegender Text -->
-    <div class="marquee-container">
-        <div class="marquee-text">
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
-            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+    <div class="scene">
+        <div class="sun"></div>
+        <div class="grass"></div>
+        <div class="fence"></div>
+        <div class="house">
+            <div class="roof"></div>
+            <div class="door"></div>
+            <div class="window left"></div>
+            <div class="window right"></div>
         </div>
+        <div class="tree" style="left: 70%;">
+            <div class="leaves"></div>
+        </div>
+        <div class="tree" style="left: 15%;">
+            <div class="leaves"></div>
+        </div>
+        <div class="egg"></div>
     </div>
-
-    <script>
-        // Funktion zum Navigieren zur Y.html-Seite
-        function goToY() {
-            window.location.href = 'Y.html'; // Navigiert zur Y.html-Seite
-        }
-    </script>
 </body>
 </html>
