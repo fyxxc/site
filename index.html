@@ -22,6 +22,7 @@
             font-size: 10rem; /* Große Schrift */
             margin: 0;
             cursor: pointer; /* Zeigt, dass der Text klickbar ist */
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
         }
 
         /* Dropdown-Menü-Stil */
@@ -34,24 +35,29 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: black; /* Dropdown-Hintergrund komplett schwarz */
-            color: white; /* Dropdown-Schriftfarbe weiß */
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2); /* Weißer Schatten */
+            background-color: white; /* Weißer Hintergrund */
+            color: black; /* Textfarbe schwarz */
+            min-width: 200px; /* Breitere Breite für bessere Lesbarkeit */
+            border-radius: 12px; /* Abgerundete Ecken */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Dezenter Schatten */
             z-index: 1;
-            text-align: center;
+            text-align: left; /* Linke Ausrichtung */
+            padding: 10px 0; /* Vertikale Polsterung */
         }
 
         .dropdown-content a {
-            color: white; /* Linkfarbe weiß */
+            color: black; /* Linkfarbe schwarz */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 18px; /* Größere Schrift */
+            font-size: 16px; /* Kleinere Schriftgröße für das Dropdown-Menü */
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
+            transition: background-color 0.2s, color 0.2s; /* Sanfte Übergänge */
         }
 
         .dropdown-content a:hover {
-            background-color: #333; /* Hintergrund beim Hover leicht heller */
+            background-color: #f0f0f5; /* Hellerer Hintergrund beim Hover */
+            color: #007aff; /* Linkfarbe beim Hover */
         }
 
         .dropdown:hover .dropdown-content {
@@ -59,12 +65,21 @@
         }
 
         .dropbtn {
-            background-color: black;
-            color: white;
+            background-color: white; /* Weißer Hintergrund für den Button */
+            color: black; /* Schwarze Schriftfarbe */
             padding: 16px;
             font-size: 18px; /* Größere Schrift für den Button */
-            border: none; /* Weißer Rand entfernt */
+            border: 1px solid #d0d0d5; /* Dünner grauer Rand */
+            border-radius: 12px; /* Abgerundete Ecken */
             cursor: pointer;
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Apple-ähnliche Schriftart */
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Sanfte Übergänge */
+        }
+
+        .dropbtn:hover {
+            background-color: #f0f0f5; /* Hellerer Hintergrund beim Hover */
+            color: #007aff; /* Textfarbe beim Hover */
+            border-color: #007aff; /* Randfarbe beim Hover */
         }
 
         /* Modal-Box-Stil */
