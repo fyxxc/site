@@ -7,46 +7,146 @@
     <style>
         body {
             background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3) 0%, black 40%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
             color: white;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         h1 {
             font-size: 10rem;
             margin: 0;
-            text-align: center;
-            padding-top: 40vh;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            cursor: pointer; /* Zeigt, dass der Text klickbar ist */
+            cursor: pointer;
         }
 
-        /* Menü-Sektions-Stil */
-        .menu-section {
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            text-align: center;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropbtn {
+            background-color: black;
+            color: white;
+            padding: 16px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: black;
-            padding: 50px 20px;
         }
 
-        .menu-link {
-            color: white;
-            font-size: 4rem;
-            text-decoration: none;
-            margin: 0 40px;
-            transition: color 0.2s ease, transform 0.2s ease;
+        .modal-content {
+            background-color: #2c2c2e;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #eaeaea;
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-out;
         }
 
-        .menu-link:hover {
-            color: #007aff;
-            transform: scale(1.1);
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
 
-        /* Endlos bewegender Text am unteren Rand */
+        .close-btn {
+            background-color: #007aff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .flash .bolt {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 4;
+            transition: opacity 0.1s;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes bolt {
+            0% { opacity: 0; transform: scale(1) rotate(0); }
+            50% { opacity: 1; transform: scale(1.5) rotate(45deg); }
+            100% { opacity: 0; transform: scale(1) rotate(90deg); }
+        }
+
         .marquee-container {
             position: absolute;
             bottom: 0;
@@ -68,33 +168,89 @@
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
+
+        /* Neuer Textbereich am unteren Rand */
+        .footer-text {
+            position: absolute;
+            bottom: 10px;
+            color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
+            font-size: 1.2rem;
+            text-align: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
-    <!-- Überschrift -->
-    <h1 onclick="goToY()">Fynn Hofmann</h1> <!-- Klick auf den ganzen Namen -->
-
-    <!-- Menü-Sektion -->
-    <div class="menu-section">
-        <a href="about.html" class="menu-link">Über Fynn</a>
-        <a href="info.html" class="menu-link">Infos</a>
-        <a href="mailto:site@fynn-hofmann.com" class="menu-link">Mail</a>
-        <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" class="menu-link" target="_blank">LinkedIn</a>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Diese Webseite ist noch in Bearbeitung.</p>
+            <button class="close-btn" onclick="closeModal()">OK</button>
+        </div>
     </div>
 
-    <!-- Endlos bewegender Text -->
+    <div id="flash" class="flash"></div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Menü</button>
+        <div class="dropdown-content">
+            <a href="about.html" onclick="showFlash(event, 'about.html')">Über Fynn</a>
+            <a href="info.html" onclick="showFlash(event, 'info.html')">Infos</a>
+            <a href="mailto:site@fynn-hofmann.com">Mail</a>
+            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+    <h1 onclick="easterEgg()">Fynn Hofmann</h1>
+
     <div class="marquee-container">
         <div class="marquee-text">
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
+            Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
             Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
             Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
             Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp; Fynn Hofmann &nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
+    <!-- Neuer Textbereich am unteren Rand -->
+    <div class="footer-text">
+        <!-- Hier kannst du deinen Text einfügen -->
+        Hier kannst du deinen Text einfügen
+    </div>
+
     <script>
-        // Funktion zum Navigieren zur Y.html-Seite
-        function goToY() {
-            window.location.href = 'Y.html'; // Navigiert zur Y.html-Seite
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.transform = 'translateY(-50px)';
+            modal.style.opacity = '0';
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        function showFlash(event, url) {
+            event.preventDefault();
+
+            const flash = document.getElementById('flash');
+            flash.innerHTML = '';
+
+            for (let i = 0; i < 10; i++) {
+                const bolt = document.createElement('div');
+                bolt.className = 'bolt';
+                bolt.style.top = `${Math.random() * 100}vh`;
+                bolt.style.left = `${Math.random() * 100}vw`;
+                bolt.style.animation = `bolt ${Math.random() * 0.5 + 0.5}s linear`;
+                flash.appendChild(bolt);
+            }
+
+            flash.style.opacity = '1';
+
+            setTimeout(() => {
+                flash.style.opacity = '0';
+                setTimeout(() => window.location.href = url, 300);
+            }, 300);
+        }
+
+        function easterEgg() {
+            window.location.href = 'Y.html';
         }
     </script>
 </body>
