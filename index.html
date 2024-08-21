@@ -11,12 +11,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 200vh; /* Erhöht die Höhe, um Scrollen zu ermöglichen */
             margin: 0;
             color: white;
             font-family: Arial, sans-serif;
             overflow-x: hidden; /* Verhindert horizontales Scrollen */
-            overflow-y: auto;  /* Ermöglicht vertikales Scrollen */
         }
 
         h1 {
@@ -150,7 +149,7 @@
 
         .marquee-container {
             position: absolute;
-            bottom: 70px; /* Platz für den Footer schaffen */
+            bottom: 130px; /* Platz für den Footer schaffen */
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
@@ -173,19 +172,15 @@
         .footer-container {
             position: relative;
             width: 100%;
-            overflow-x: auto; /* Ermöglicht horizontales Scrollen */
-            white-space: nowrap; /* Verhindert Zeilenumbruch */
             background-color: black;
             color: rgba(138, 43, 226, 0.8); /* Gleiche Farbe wie der violette Farbkreis */
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            padding: 10px 0;
-            text-align: center; /* Zentriert den Text */
+            padding: 20px 0;
+            text-align: center;
         }
 
         .footer-text {
-            display: inline-block;
             font-size: 1.2rem;
-            padding: 0 20px;
         }
     </style>
 </head>
@@ -208,7 +203,7 @@
             <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">LinkedIn</a>
         </div>
     </div>
-    <h1 onclick="easterEgg()">Fynn Hofmann</h1>
+    <h1 onclick="handleClick('y')">Fynn Hofmann</h1>
 
     <div class="marquee-container">
         <div class="marquee-text">
@@ -259,8 +254,10 @@
             }, 300);
         }
 
-        function easterEgg() {
-            window.location.href = 'Y.html';
+        function handleClick(char) {
+            if (char === 'y') {
+                window.location.href = 'Y.html';
+            }
         }
     </script>
 </body>
