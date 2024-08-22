@@ -1,4 +1,4 @@
-ne <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@ ne <!DOCTYPE html>
             margin: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #4e54c8, #8f94fb);
@@ -32,19 +33,36 @@ ne <!DOCTYPE html>
             from { opacity: 0; }
             to { opacity: 1; }
         }
-    </style>
-    <script>
-        function redirect() {
-            setTimeout(function() {
-                window.location.href = "https://github.com";
-            }, 5000);
+        .menu {
+            margin-top: 20px;
         }
-    </script>
+        .menu a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
 </head>
-<body onload="redirect()">
+<body>
     <div>
         <h1>Hallo Fynn</h1>
-        <p>Keine Sorge, du wirst kleich auf GitHub weitergeleitet.</p>
+        <p>Wähle eine Option aus dem Menü:</p>
+        <div class="menu">
+            <a href="https://github.com" target="_blank">Gehe zu GitHub</a>
+            <a href="https://google.com" target="_blank">Gehe zu Google</a>
+            <a href="https://linkedin.com" target="_blank">Gehe zu LinkedIn</a>
+            <!-- Weitere Links können hier hinzugefügt werden -->
+        </div>
     </div>
 </body>
 </html>
